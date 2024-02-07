@@ -1,11 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro'
-import { getLaunchById, getLatestLaunches } from '../../components/services/spacex'
+import { getLaunchById } from '../../components/services/spacex'
 
-export const prerendet = false // server
+export const prerendet: boolean = false // server
 const { id } = Astro.params
 
-let launch
+let launch: any
 if (id) {
   launch = await getLaunchById({id})
 }
@@ -28,7 +28,7 @@ if (id) {
 ---
 <Layout title={`Lanzamiento ${id}`}>
   <article class="flex flex-col justify-center justify-items-center items-center">
-    <img src={launch?.links?.patch.small} alt={launch.name}>
-    <h2>Launch #{launch?.flight_number}</h2>
+    <img src={launch?.links?.patch.small} alt={launch?.name}>
+    <h2>Launch # {launch?.flight_number}</h2>
   </article>
 </Layout>
